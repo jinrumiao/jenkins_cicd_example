@@ -14,6 +14,7 @@ pipeline {
                 sh '''
                 echo "doing build stuff.."
                 ls -ltr
+                pip install --no-cache-dir -r requirements.txt
                 '''
             }
         }
@@ -22,8 +23,9 @@ pipeline {
                 echo "Testing.."
                 sh '''
                 echo "doing test stuff.."
-                python3 greeting.py
+                pytest
                 '''
+                /* python3 greeting.py */
             }
         }
         stage('Deliver') {
