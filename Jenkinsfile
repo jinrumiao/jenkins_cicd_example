@@ -36,7 +36,7 @@ pipeline {
                 echo 'Deliver....'
                 sh '''
                 echo "doing delivery stuff.."
-                python3 uvicorn api_example:app --reload
+                uvicorn api_example:app --reload
                 cat http://localhost:8000/
                 '''
             }
