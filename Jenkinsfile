@@ -26,7 +26,7 @@ pipeline {
                 echo "Testing.."
                 sh '''
                 echo "doing test stuff.."
-                pytest
+                python3 -m pytest
                 '''
                 /* python3 greeting.py */
             }
