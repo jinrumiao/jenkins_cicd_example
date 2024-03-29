@@ -15,6 +15,8 @@ pipeline {
                 echo "doing build stuff.."
                 ls -ltr
                 python3 --version
+                pip install --upgrade pip
+                pip install --no-cache-dir -r requirements.txt
                 '''
                 /* pip install --no-cache-dir -r requirements.txt */
             }
