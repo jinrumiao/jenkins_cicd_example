@@ -8,7 +8,7 @@ pipeline {
     triggers {
         pollSCM "H/3 * * * *"
       }
-//     stages {
+    stages {
 //         stage('Build') {
 //             steps {
 //                 echo "Building.."
