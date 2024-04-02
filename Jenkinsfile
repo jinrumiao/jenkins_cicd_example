@@ -35,7 +35,7 @@ pipeline {
         stage('Show Docker Image') {
             steps {
                 echo 'Show Docker Image'
-                docker images python
+                sh 'docker images python'
             }
         }
         stage('Build Docker Image') {
