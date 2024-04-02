@@ -32,7 +32,7 @@ pipeline {
             }
         }
         stage('Build Docker Image') {
-            agent any
+            agent { dockerfile true }
             steps {
                 echo 'Build Docker Image'
                 sh 'docker build -t miaojinru/cicd-e2e-exampl:1 .'
