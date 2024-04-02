@@ -31,29 +31,20 @@ pipeline {
                 /* python3 greeting.py */
             }
         }
-        stage('Build Docker'){
-            steps{
-                /* This builds the actual image; synonymous to
-                 * docker build on the command line */
-
-                app = docker.build("miaojinru/cicd-e2e-exampl:1")
-//                 script{
-//                     sh '''
-//                     echo 'Build Docker Image'
-//                     docker build -t miaojinru/cicd-e2e-exampl:1 .
-//                     '''
-//                 }
+        stage('Build Docker Image') {
+            agent any
+            steps {
+                echo 'Build Docker Image'
+                sh 'docker build -t miaojinru/cicd-e2e-exampl:1 .'
             }
         }
-        /* stage('Deliver') {
+        stage('Deliver') {
             steps {
                 echo 'Deliver....'
                 sh '''
                 echo "doing delivery stuff.."
-                python3 api_example.py
-                cat http://localhost:8000/
                 '''
             }
-        } */
+        }
     }
 }
