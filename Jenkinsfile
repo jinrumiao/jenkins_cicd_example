@@ -35,7 +35,7 @@ pipeline {
             agent { dockerfile true }
             steps {
                 echo 'Build Docker Image'
-                sh 'docker build -t miaojinru/cicd-e2e-exampl:1 .'
+                docker.build('miaojinru/cicd-e2e-exampl:1')
             }
         }
         stage('Deliver') {
