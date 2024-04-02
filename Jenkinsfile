@@ -1,9 +1,10 @@
 pipeline {
-    agent {
-        node {
-            label 'docker-agent-python'
-            }
-      }
+//     agent {
+//         node {
+//             label 'docker-agent-python'
+//             }
+//       }
+    agent any
     triggers {
         pollSCM "H/3 * * * *"
       }
@@ -32,7 +33,6 @@ pipeline {
             }
         }
         stage('Build Docker Image') {
-            agent { dockerfile true }
             steps {
                 echo 'Build Docker Image'
                 docker.build('miaojinru/cicd-e2e-exampl:1')
