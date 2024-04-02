@@ -25,7 +25,8 @@ pipeline {
                 script{
                     sh '''
                     echo 'Test api in Docker Container.'
-                    docker exec -it miaojinru/cicd-e2e-exampl:1 python3 api_test.py
+                    docker run -d --rm --name api_cicd_example miaojinru/cicd-e2e-exampl:1
+                    docker exec -it api_cicd_example python3 api_test.py
                     '''
                 }
             }
