@@ -31,7 +31,17 @@ pipeline {
                 /* python3 greeting.py */
             }
         }
-        stage('Deliver') {
+        stage('Build Docker'){
+            steps{
+                script{
+                    sh '''
+                    echo 'Build Docker Image'
+                    docker build -t miaojinru/cicd-e2e-exampl:1 .
+                    '''
+                }
+            }
+        }
+        /* stage('Deliver') {
             steps {
                 echo 'Deliver....'
                 sh '''
@@ -40,6 +50,6 @@ pipeline {
                 cat http://localhost:8000/
                 '''
             }
-        }
+        } */
     }
 }
