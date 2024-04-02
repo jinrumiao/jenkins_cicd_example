@@ -35,7 +35,9 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 echo 'Build Docker Image'
-                docker.build('miaojinru/cicd-e2e-exampl:1')
+                script {
+                    docker.build('miaojinru/cicd-e2e-exampl:1')
+                }
             }
         }
         stage('Deliver') {
