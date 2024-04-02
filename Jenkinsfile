@@ -32,14 +32,18 @@ pipeline {
             }
         }
         stage('Build Docker'){
-            steps{
-                script{
-                    sh '''
-                    echo 'Build Docker Image'
-                    docker build -t miaojinru/cicd-e2e-exampl:1 .
-                    '''
-                }
-            }
+            /* This builds the actual image; synonymous to
+             * docker build on the command line */
+
+            app = docker.build("miaojinru/cicd-e2e-exampl:1")
+//             steps{
+//                 script{
+//                     sh '''
+//                     echo 'Build Docker Image'
+//                     docker build -t miaojinru/cicd-e2e-exampl:1 .
+//                     '''
+//                 }
+//             }
         }
         /* stage('Deliver') {
             steps {
