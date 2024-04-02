@@ -32,6 +32,12 @@ pipeline {
 //                 /* python3 greeting.py */
 //             }
 //         }
+        stage('Show Docker Image') {
+            steps {
+                echo 'Show Docker Image'
+                docker images python
+            }
+        }
         stage('Build Docker Image') {
             steps {
                 echo 'Build Docker Image'
