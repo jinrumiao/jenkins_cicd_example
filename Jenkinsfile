@@ -3,12 +3,13 @@ pipeline {
 
     environment {
         IMAGE_TAG = "${BUILD_NUMBER}"
-        REGISTRY = "miaojinru/cicd-e2e-exampl:$IMAGE_TAG"
+        REGISTRY = "miaojinru/cicd-e2e-example:$IMAGE_TAG"
     }
 
     triggers {
         pollSCM "H/3 * * * *"
       }
+
     stages {
         stage('Check Build Number') {
             steps {
@@ -42,6 +43,7 @@ pipeline {
                 script{
                     sh '''
                     echo 'Push to Repo'
+                    docker tag $REGISTRY $REGISTRY
                     docker push $REGISTRY
                     '''
                 }
