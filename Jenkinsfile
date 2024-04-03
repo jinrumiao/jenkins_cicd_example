@@ -47,7 +47,7 @@ pipeline {
                 }
             }
         }
-        stage('Update K8S manifest and push to github') {
+        stage('Checkout K8S manifest') {
             steps {
                 git(
                     url: "https://github.com/jinrumiao/jenkins_cicd_manifest.git",
@@ -56,6 +56,8 @@ pipeline {
                     poll: true
                 )
             }
+        }
+        stage('Update K8S manifest and push to github') {
             steps {
                 script{
                     withCredentials([ gitUsernamePassword(credentialsId: "github_jenkins_cicd_manifest", gitToolName: "Default") ]) {
