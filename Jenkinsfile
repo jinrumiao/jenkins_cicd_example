@@ -49,9 +49,18 @@ pipeline {
         }
         stage('Update K8S manifest and push to github') {
             steps {
+                git(
+                    url: "https://github.com/jinrumiao/jenkins_cicd_manifest.git",
+                    branch: "main",
+                    changelog: true,
+                    poll: true
+                )
+            }
+            steps {
                 script{
                     withCredentials([ gitUsernamePassword(credentialsId: "github_jenkins_cicd_manifest", gitToolName: "Default") ]) {
                     sh '''
+                        cd jenkins_cicd_manifest
                         cat deploy.yaml
 
                     '''
