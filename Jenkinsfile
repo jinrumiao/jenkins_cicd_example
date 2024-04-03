@@ -51,7 +51,7 @@ pipeline {
             steps {
                 git(
                     url: "https://github.com/jinrumiao/jenkins_cicd_manifest.git",
-                    branch: "main",
+                    branch: "master",
                     changelog: true,
                     poll: true
                 )
