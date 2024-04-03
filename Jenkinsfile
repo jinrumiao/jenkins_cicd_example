@@ -10,26 +10,36 @@ pipeline {
                 sh 'docker images python'
             }
         }
-        stage('Build Docker Image') {
+        stage('Build Docker Image and Test') {
             steps {
                 script{
                     sh '''
                     echo 'Build Docker Image.'
-                    docker build -t miaojinru/cicd-e2e-exampl:1 .
                     '''
-                }
-            }
-        }
-        stage('Test api') {
-            steps {
-                script{
+//                     docker build -t miaojinru/cicd-e2e-exampl:1 .
+
+                    def customImage = docker.build("miaojinru/cicd-e2e-exampl:1")
+
                     sh '''
                     echo 'Test api in Docker Container.'
-                    docker run -d --rm --name api_cicd_example miaojinru/cicd-e2e-exampl:1
-                    docker exec -it api_cicd_example python3 api_test.py
                     '''
+
+                    customImage.inside {
+                        sh 'python3 api_test.py'
+                    }
                 }
             }
         }
+//         stage('Test api') {
+//             steps {
+//                 script{
+//                     sh '''
+//                     echo 'Test api in Docker Container.'
+//                     docker run -d --rm --name api_cicd_example miaojinru/cicd-e2e-exampl:1
+//                     docker exec -it api_cicd_example python3 api_test.py
+//                     '''
+//                 }
+//             }
+//         }
     }
 }
