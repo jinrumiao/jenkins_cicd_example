@@ -39,14 +39,8 @@ pipeline {
             }
         }
         stage('Push Docker Image') {
-            steps {
-                script{
-                    sh '''
-                    echo 'Push to Repo'
-                    docker tag $REGISTRY $REGISTRY
-                    docker push $REGISTRY
-                    '''
-                }
+            withDockerRegistry([ credentialsId: "DOCKER_HUB", url: "" ]) {
+                sh 'docker push $REGISTRY'
             }
         }
     }
