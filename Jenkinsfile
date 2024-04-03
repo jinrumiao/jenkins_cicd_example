@@ -40,8 +40,10 @@ pipeline {
         }
         stage('Push Docker Image') {
             steps {
-                withDockerRegistry([ credentialsId: "DOCKER_HUB", url: "" ]) {
-                sh 'docker push $REGISTRY'
+                script{
+                    withDockerRegistry([ credentialsId: "DOCKER_HUB", url: "" ]) {
+                    sh 'docker push $REGISTRY'
+                    }
                 }
             }
         }
