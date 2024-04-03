@@ -27,7 +27,6 @@ pipeline {
                     sh '''
                     echo 'Build Docker Image.'
                     '''
-//                     docker build -t miaojinru/cicd-e2e-exampl:1 .
 
                     def customImage = docker.build("$REGISTRY")
 
@@ -37,6 +36,7 @@ pipeline {
 
                     customImage.inside {
                         sh 'ls'
+                        sh 'python3 api_test.py'
                     }
                 }
             }
