@@ -26,18 +26,13 @@ pipeline {
                 script{
                     sh '''
                     echo 'Build Docker Image.'
+                    docker build -t $REGISTRY .
                     '''
-
-                    customImage = docker.build("$REGISTRY")
 
                     sh '''
                     echo 'Test api in Docker Container.'
+                    docker run -d --rm --name api_cicd_example $REGISTRY pytest
                     '''
-
-                    customImage.inside {
-                        sh 'cd /opt && ls -l'
-//                         sh 'pytest'
-                    }
                 }
             }
         }
