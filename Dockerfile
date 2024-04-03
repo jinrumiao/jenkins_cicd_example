@@ -6,4 +6,4 @@ COPY . /workspace
 
 RUN pip3 install -r requirements.txt
 
-CMD ["python3", "mlflow_exporter.py"]
+CMD ["python3", "api_example.py"]
