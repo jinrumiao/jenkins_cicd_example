@@ -64,7 +64,7 @@ pipeline {
                     sh '''
                         ls -lh
                         cat deploy.yaml
-                        sed -i 's/miaojinru\\/cicd-e2e-example:[0-9]\\+/\\$REGISTRY/g' deploy.yaml
+                        sed -i 's/miaojinru\\/cicd-e2e-example:[0-9]\\+/$REGISTRY/g' deploy.yaml
                         cat deploy.yaml
 
                     '''
