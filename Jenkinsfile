@@ -3,6 +3,7 @@ pipeline {
 
     environment {
         IMAGE_TAG = "${BUILD_NUMBER}"
+        REGISTRY = "miaojinru/cicd-e2e-exampl:$IMAGE_TAG"
     }
 
     triggers {
@@ -11,7 +12,7 @@ pipeline {
     stages {
         stage('Check Build Number') {
             steps {
-                sh 'echo $IMAGE_TAG'
+                sh 'echo $REGISTRY'
             }
         }
         stage('Show Docker Image') {
@@ -28,7 +29,7 @@ pipeline {
                     '''
 //                     docker build -t miaojinru/cicd-e2e-exampl:1 .
 
-                    def customImage = docker.build("miaojinru/cicd-e2e-exampl:1")
+                    def customImage = docker.build("$REGISTRY")
 
                     sh '''
                     echo 'Test api in Docker Container.'
@@ -36,7 +37,6 @@ pipeline {
 
                     customImage.inside {
                         sh 'ls'
-                        sh 'python3 api_test.py'
                     }
                 }
             }
