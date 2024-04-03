@@ -66,6 +66,10 @@ pipeline {
                         cat deploy.yaml
                         sed -i "s/miaojinru\\/cicd-e2e-example:[0-9]\\+/miaojinru\\/cicd-e2e-example:$IMAGE_TAG/g" deploy.yaml
                         cat deploy.yaml
+                        git add deploy.yaml
+                        git commit -m 'Updated the deploy.yaml | By Jenkins Pipeline'
+                        git remote -v
+                        git push https://github.com/jinrumiao/jenkins_cicd_manifest.git HEAD:master
                     '''
 //                     sh 'sed -i s/miaojinru\\/cicd-e2e-example:[0-9]\\+/"$REGISTRY"/g deploy.yaml'
 //                     sh 'cat deploy.yaml'
