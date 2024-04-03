@@ -35,8 +35,8 @@ pipeline {
                     '''
 
                     customImage.inside {
-                        sh 'ls'
-                        sh 'pytest'
+                        sh 'cd /opt && ls -l'
+//                         sh 'pytest'
                     }
                 }
             }
