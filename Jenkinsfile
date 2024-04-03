@@ -60,7 +60,7 @@ pipeline {
         stage('Update K8S manifest and push to github') {
             steps {
                 script{
-                    withCredentials([ gitUsernamePassword(credentialsId: "github_jenkins_cicd_manifest", gitToolName: "Default") ]) {
+                    withCredentials([ gitUsernamePassword(credentialsId: "github_jenkins_cicd_manifest", gitToolName: "Default", , passwordVariable: 'GITHUB_PASSWORD', usernameVariable: 'GITHUB_USER') ]) {
                     sh '''
                         ls -lh
                         cat deploy.yaml
