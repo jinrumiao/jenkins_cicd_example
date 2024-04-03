@@ -32,22 +32,20 @@ pipeline {
                     sh '''
                     echo 'Test api in Docker Container.'
                     docker run -d -it --rm --name api_cicd_example $REGISTRY pytest
-                    docker ps
                     docker logs -f api_cicd_example
                     '''
                 }
             }
         }
-//         stage('Test api') {
-//             steps {
-//                 script{
-//                     sh '''
-//                     echo 'Test api in Docker Container.'
-//                     docker run -d --rm --name api_cicd_example miaojinru/cicd-e2e-exampl:1
-//                     docker exec -it api_cicd_example python3 api_test.py
-//                     '''
-//                 }
-//             }
-//         }
+        stage('Push Docker Image') {
+            steps {
+                script{
+                    sh '''
+                    echo 'Push to Repo'
+                    docker push $REGISTRY
+                    '''
+                }
+            }
+        }
     }
 }
