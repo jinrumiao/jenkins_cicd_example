@@ -64,10 +64,11 @@ pipeline {
                     sh '''
                         ls -lh
                         cat deploy.yaml
-                        sed -i s/miaojinru\\/cicd-e2e-example:[0-9]\\+/"$REGISTRY"/g deploy.yaml
+                        sed -i '' "s/miaojinru\\/cicd-e2e-example:[0-9]\\+/$REGISTRY/g" deploy.yaml
                         cat deploy.yaml
-
                     '''
+//                     sh 'sed -i s/miaojinru\\/cicd-e2e-example:[0-9]\\+/"$REGISTRY"/g deploy.yaml'
+//                     sh 'cat deploy.yaml'
 //                     git add deploy.yaml
 //                         git commit -m 'Updated the deploy.yaml | By Jenkins Pipeline'
 //                         git remote -v
