@@ -62,7 +62,7 @@ pipeline {
                 script{
                     withCredentials([ gitUsernamePassword(credentialsId: "github_jenkins_cicd_manifest", gitToolName: "Default") ]) {
                     sh '''
-                        cd jenkins_cicd_manifest
+                        ls -lh
                         cat deploy.yaml
 
                     '''
