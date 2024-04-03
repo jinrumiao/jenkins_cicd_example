@@ -31,9 +31,9 @@ pipeline {
 
                     sh '''
                     echo 'Test api in Docker Container.'
-                    docker run -d --rm --name api_cicd_example $REGISTRY pytest
+                    docker run -d -it --rm --name api_cicd_example $REGISTRY pytest
                     docker ps
-                    docker logs api_cicd_example
+                    docker logs -f api_cicd_example
                     '''
                 }
             }
