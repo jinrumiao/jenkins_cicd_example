@@ -1,9 +1,19 @@
 pipeline {
     agent any
+
+    environment {
+        IMAGE_TAG = "${BUILD_NUMBER}"
+    }
+
     triggers {
         pollSCM "H/3 * * * *"
       }
     stages {
+        stage('Check Build Number') {
+            steps {
+                sh 'echo $IMAGE_TAG'
+            }
+        }
         stage('Show Docker Image') {
             steps {
                 echo 'Show Docker Image.'
@@ -25,6 +35,7 @@ pipeline {
                     '''
 
                     customImage.inside {
+                        sh 'ls'
                         sh 'python3 api_test.py'
                     }
                 }
