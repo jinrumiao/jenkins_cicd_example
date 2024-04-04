@@ -53,7 +53,6 @@ pipeline {
                     url: "https://github.com/jinrumiao/jenkins_cicd_manifest.git",
                     branch: "master",
                     changelog: true,
-                    poll: true
                 )
             }
         }
