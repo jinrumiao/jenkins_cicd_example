@@ -6,10 +6,6 @@ pipeline {
         REGISTRY = "miaojinru/cicd-e2e-example:$IMAGE_TAG"
     }
 
-    triggers {
-        pollSCM "H/3 * * * *"
-      }
-
     stages {
         stage('Check Build Number') {
             steps {
