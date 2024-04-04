@@ -10,7 +10,7 @@ async def root():
 
 
 def hello(name) -> str:
-    return f"Hello {name}."
+    return f"Hello {name}. Welcome to this api example."
 
 
 @app.get(
